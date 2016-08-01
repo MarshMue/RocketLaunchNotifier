@@ -6,27 +6,25 @@ import (
 	//"gopkg.in/telegram-bot-api.v4"
 	"fmt"
 	//"log"
+	"container/list"
 	"github.com/yhat/scrape"
 	"golang.org/x/net/html"
 	"golang.org/x/net/html/atom"
 	"net/http"
-	"container/list"
 )
 
-type launch struct{
-	date string
-	time string
-	site string
-	rocket string
-	payload string
+type launch struct {
+	date        string
+	time        string
+	site        string
+	rocket      string
+	payload     string
 	description string
 }
 
 func getLaunchInfo() launch {
 	// init list of launches
 	launches := list.New()
-
-	
 
 	resp, err := http.Get("http://spaceflightnow.com/launch-schedule/")
 	if err != nil {
@@ -36,7 +34,6 @@ func getLaunchInfo() launch {
 	if err != nil {
 		panic(err)
 	}
-
 
 	// define a matcher
 	matcher := func(n *html.Node) bool {
@@ -128,6 +125,5 @@ func main() {
 			log.Fatal(err)
 		}
 	*/
-
 
 }
